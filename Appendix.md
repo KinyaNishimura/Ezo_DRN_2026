@@ -22,7 +22,7 @@ This Appendix describes the process of exploring appropriate metrics for analyzi
 
 RRPP (Residual Randomization in Permutation Procedures) offers substantial advantages for dealing with high-dimensional geometric morphometric data (Adams and Collyer, 2016; Collyer and Adamus, 2024; Collyer et al., 2015). We first analyzed generalized Procrustes coordinate shape data using RRPP for an overall hypothesis model incorporating 'Treatment type' as a fixed effect and 'Population (Location)' as a random effect. The results of the analysis using this code are presented in Table 1 of the main text. The R code for the analysis is shown below. 
 
-[source data file on GipHub](https://github.com/KinyaNishimura/Ezo_DRN_2026/blob/main/Symm.BE.GPA.AllInd.txt): "Symm.BE.GPA.AllInd.txt"
+[source data file ("Symm.BE.GPA.AllInd.txt") on GipHub](https://github.com/KinyaNishimura/Ezo_DRN_2026/blob/main/Symm.BE.GPA.AllInd.txt)
 
 ```
 # Data loading
