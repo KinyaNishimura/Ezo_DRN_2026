@@ -1,3 +1,7 @@
+https://kinyanishimura.github.io/Ezo_DRN_2026/Appendix.html
+
+
+
 # Appendix: Analysis Methods of Geometric Morphometrics
 
 ---
@@ -130,9 +134,9 @@ We can understand that, from the simplified example in a three-dimensional space
 
 
 
-Even in a schematic quasi-shape space (Figure A2), where the differences or similarities between two vector sets are examined, substantial geometric complexity persists. As this example illustrates, in actual high-dimensional shape space, when the subspaces embedding different sets of vectors are ambiguous in their similarity or distinctness, determining whether these vector sets have geometrically similar or dissimilar properties, and interpreting their biological significance, becomes problematic.
+Even in a schematic quasi-shape space (Figure A2) of much lower dimension than the actual shape space, where the differences or similarities between two vector sets are examined, substantial geometric complexity persists. As this example illustrates, in actual high-dimensional shape space, when the subspaces embedding different sets of vectors are ambiguous in their similarity or distinctness, determining whether these vector sets have geometrically similar or dissimilar properties, and interpreting their biological significance, becomes problematic.
 
-This geometric complexity reveals a fundamental challenge: assessing morphological congruence or divergence in high-dimensional generalized Procrustes space requires integration of complex geometric information. Within individual subspaces, the apparent similarity or difference between patterns depends critically on the geometric structure of the embedding subspace. Consequently, researchers are unable to derive clear biological conclusions from multidimensional shape data unless they can explicitly consider the structural relationship between the morphology itself and the Procrustes space used to map it.
+**This geometric complexity reveals a fundamental challenge: assessing morphological congruence or divergence in high-dimensional generalized Procrustes space requires integration of complex geometric information. Within individual subspaces, the apparent similarity or difference between patterns depends critically on the geometric structure of the embedding subspace. Consequently, researchers are unable to derive clear biological conclusions from multidimensional shape data unless they can explicitly consider the structural relationship between the morphology itself and the Procrustes space used to map it.**
 
 ---
 
@@ -188,11 +192,11 @@ We compared the group separation performance of the 'Treatment' and 'Population'
 
 The separation performance evaluation employs a one-way ANOVA framework to quantify how effectively each principal component axis discriminates between experimental groups. For each component axis and grouping factor ('Treatment' or 'Population'), the analysis calculates F-ratios by dividing the between-group mean square by the within-group mean square, where the between-group variance reflects how much group means differ from the overall mean, and the within-group variance captures variability within each group. Higher *F*-ratios indicate better separation, as they represent cases where groups are well-separated relative to their internal scatter. The comparison between PCA and bgPCA involves computing F-ratios for corresponding axes (PC1 vs bgPC1, PC2 vs bgPC2, etc.) and forming improvement ratios by dividing bgPCA F-ratios by PCA F-ratios. Individual axis improvements are weighted by each component's variance contribution, ensuring that separation gains in dominant components receive proportionally greater influence than those in minor components. This weighting scheme acknowledges that, for example, enhanced discrimination in a component explaining 60% of variance has greater practical relevance than improvements in a component explaining only 3% of variance, thereby evaluating bgPCA's performance relative to traditional PCA based on variance-weighted considerations.
 
+
+
 <div style="margin-left: 10px; margin-right: 20px; font-size: 14px;">
 <b>Table A3. </b> <i>F</i>-ratios represent separation effectiveness calculated via one-way ANOVA (between-group variance divided by within-group variance) for each principal component axis. Improvement ratios indicate bgPCA performance relative to PCA, where values >1.0 favor bgPCA. Variance weights show each component's contribution to total explained variance. <i>F</i>-statistic degrees of freedom are not reported because this analysis uses <i>F</i>-ratios as descriptive effect size measures rather than conducting formal hypothesis tests. The improvement ratios (bgPCA <i>F</i>-ratio / PCA <i>F</i>-ratio) lack established statistical distributions for parametric testing. No significance testing is performed on these ratios, only descriptive comparison of separation magnitudes across methods.
 </div>
-
-
 | Axis | PCA Treatment | PCA Population | bgPCA Treatment | bgPCA Population | Improvement Treatment | Improvement Population | bgPC Variance Weight |
 |------|----------------|--------------|------------------|----------------|----------------------|---------------------|-----------------|
 | 1    | 40.067         | 57.977       | 43.980           | 58.415         | 1.098                | 1.008               | 64.7%           |
@@ -257,7 +261,7 @@ Two weighting schemes were applied to assess the relative importance of variance
 
 <div style="margin-left: 0px; margin-right: 0px; font-size: 14px;">
 <b>Table A5. </b> (A) presents the variance component decomposition for the first six principal components, which collectively account for 95% of the total shape variance in the dataset. The PC_total variance for each component is additively decomposed into four sources: 'Treatment' effects, 'Population' effects, 'Treatment×Population interaction' effects, and Residual variance. Values in parentheses represent the percentage contribution of each variance component within that specific PC. (B) presents the variance component decomposition based on non-residual variance, where systematic effects ('Treatment', 'Population', and 'Interaction') total 100%. This rescaling excludes residual variance to focus specifically on biologically interpretable variation patterns.
-
+</div>
 **(A)**: Total variance of all PCs = 100%
 
 | PC   | PC_total     | Treatment      | Population     | Interaction    | Residual       |
@@ -313,21 +317,7 @@ We primarily focused on PC1, which captured the largest proportion of systematic
   <img src="./images/image-20250824121437904.png" alt="image-20250824121437904" style="zoom:60%;" />
 </div>
 <div style="margin-left: 150px; margin-right: 150px; font-size: 14px;">  
-<b>Fig. A6.</b> Thin-plate spline deformation grids illustrating shape variation along principal components PC1-PC3 based on non-residual variance contributions. Each panel displays deformation patterns at positive (upper row) and negative (lower row) extremes of each component axis. Black dots represent the consensus (mean) landmark configuration, while red dots indicate deformed landmark positions. Blue vectors show the magnitude and direction of landmark displacement from the consensus shape. Grid distortions visualize the relative magnitude and spatial patterns of morphological variation along each principal component axis.</div>
-
-
-
+<b>Fig. A6.</b> Thin-plate spline deformation grids illustrating shape variation along principal components PC1-PC3 based on non-residual variance contributions. Each panel displays deformation patterns at positive (upper row) and negative (lower row) extremes of each component axis. Black dots represent the consensus (mean) landmark configuration, while red dots indicate deformed landmark positions. Blue vectors show the magnitude and direction of landmark displacement from the consensus shape. Grid distortions visualize the relative magnitude and spatial patterns of morphological variation along each principal component axis.
+</div>
 These deformation grids reveal a clear hierarchical organization of morphological effects. PC1 (80.5% variance) dominates, exhibiting large-scale deformations affecting overall head shape. PC2 (9.9%) and PC3 (4.8%) show progressively smaller and more localized deformations. This pattern demonstrates that head shape development in response to feeding treatment and population differences is fundamentally governed by a single primary axis of variation, with secondary axes contributing only minor, refined modifications to morphological structure.
-
-
-
-
-
-
-
-
-
-
-
-
 
