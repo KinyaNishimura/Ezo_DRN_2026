@@ -4,7 +4,7 @@
 
 This Appendix describes the process of exploring appropriate metrics for analyzing developmental shape changes and their variation across populations. The exploration consists of the following steps:
 
-**A1**.  Analysis methods for testing overall hypotheses regarding 'Treatment' and 'Population' factors based on generalized Procrustes coordinate shape data.
+**A1**.  Analytical methods for testing overall hypotheses regarding 'Treatment' and 'Population' factors, employing generalized Procrustes coordinates that involve complete shape information from landmark-based geometric morphometrics.
 
 **A2**.  Potential limitations of analysis due to the high dimensionality of the generalized Procrustes coordinate shape space.
 
@@ -16,7 +16,9 @@ This Appendix describes the process of exploring appropriate metrics for analyzi
 
 ## A1. Shape analysis using Procrustes ANOVA with RRPP
 
-RRPP (Residual Randomization in Permutation Procedures) offers substantial advantages for dealing with high-dimensional geometric morphometric data (Adams and Collyer, 2016; Collyer and Adamus, 2024; Collyer et al., 2015). We first analyzed generalized Procrustes coordinate shape data using RRPP for an overall hypothesis model incorporating 'Treatment type' as a fixed effect and 'Population (Location)' as a random effect. The results of the analysis using this code are presented in Table 1 of the main text. The R code for the analysis is shown below. 
+In statistical analysis, shape data defined by generalized Procrustes coordinates of $K$ landmarks positioned in $M$-dimensional physical space are treated as $MK$-dimensional vectorized data. RRPP (Residual Randomization in Permutation Procedures) offers substantial advantages for analyzing high-dimensional geometric morphometric data (Adams and Collyer 2016; Collyer and Adams 2024; Collyer et al. 2015). We first analyzed vectorized generalized Procrustes coordinate shape data using RRPP with an overall hypothesis model incorporating 'Treatment type' as a fixed effect and 'Population (Location)' as a random effect. The results of this analysis are presented in Table 1 of the main text. The R code for the analysis is shown below.
+
+
 
 [Source data file: Symm.BE.GPA.AllInd.txt](https://github.com/KinyaNishimura/Ezo_DRN_2026/blob/main/Symm.BE.GPA.AllInd.txt)
 
@@ -111,13 +113,17 @@ Although some researchers have advocated for analytical methods such as pairwise
 
 ### Landmark data on the Shape space
 
-The generalized Procrustes coordinates shape data, recorded in the number of $K$ landmarks in $M$-dimensional coordinates, is defined on a unit hypersphere with $MK-(M+1)-M(M-1)/2$ degrees of freedom in $MK$-dimensional space. The shapes of S5 (pre-feeding Start 5-day), W14 (Worm-feeding 14-day), and T14 (Tad-feeding 14-day) are mapped onto the unit hypersphere (shape space).  The developing shape change caused by each of the two different diets, worm or tadpole, is characterized in this shape space by the directions of the vectors S5 → W14 and S5 → T14 and, in particular, their cross angle, and by the lengths of the vectors S5 → W14 and S5 → T14. The location of the innate shape, S5, also characterizes the shape development reaction norm.
+Generalized Procrustes coordinate shape data comprising $K$ landmarks in $M$-dimensional space are defined as $MK$-dimensional vectorized data on a unit hypersphere with $MK-(M+1)-M(M-1)/2$ degrees of freedom. The shape vectors corresponding to S5 (pre-feeding Start 5-day), W14 (worm-feeding 14-day), and T14 (tad-feeding 14-day) are projected as points onto this unit hypersphere (i.e., shape space). The developmental shape changes induced by the two different diets (worm or tadpole) are characterized in shape space by the directions of vectors S5→W14 and S5→T14, particularly by the angle between these vectors, and by the magnitudes of vectors S5→W14 and S5→T14. Additionally, the location of the innate pre-feeding shape (S5) also characterizes the developmental reaction norm.
+
+
 
 #### *- Induced developmental shapes on the shape space: Vector sets representation*
 
 In high-dimensional shape spaces, comparing and evaluating the characteristics of multiple vector sets involves substantial geometric complexity. We will explain how this causes difficulties in comparing different sets of induced developmental shape trajectories. For example, assessing whether the relationship between vector pair S5_1→W14_1 and S5_1→T14_1 shares the same intrinsic properties as the relationship between vector pair S5_2→W14_2 and S5_2→T14_2 is difficult to determine. This difficulty arises because the subspaces (planes) in which each vector set is embedded do not necessarily coincide with one another. 
 
-We can understand that, from the simplified example in a three-dimensional space, which is actually smaller than the minimal model case for the landmark method (Figure A2).
+We can understand that, from the simplified example in a three-dimensional space (Figure A2), which represents a dimensionally reduced analogue of the minimal model case for shape mapping in landmark-based geometric morphometrics.
+
+
 
 
 
@@ -132,7 +138,9 @@ We can understand that, from the simplified example in a three-dimensional space
 
 Even in a schematic quasi-shape space (Figure A2) of much lower dimension than the actual shape space, where the differences or similarities between two vector sets are examined, substantial geometric complexity persists. As this example illustrates, in actual high-dimensional shape space, when the subspaces embedding different sets of vectors are ambiguous in their similarity or distinctness, determining whether these vector sets have geometrically similar or dissimilar properties, and interpreting their biological significance, becomes problematic.
 
-**This geometric complexity reveals a fundamental challenge: assessing morphological congruence or divergence in high-dimensional generalized Procrustes space requires integration of complex geometric information. Within individual subspaces, the apparent similarity or difference between patterns depends critically on the geometric structure of the embedding subspace. Consequently, researchers are unable to derive clear biological conclusions from multidimensional shape data unless they can explicitly consider the structural relationship between the morphology itself and the Procrustes space used to map it.**
+**This geometric complexity reveals a fundamental issue: evaluating morphological congruence and divergence in high-dimensional generalized Procrustes space requires the integration of complex geometric information. Within individual subspaces, apparent similarities and differences between patterns are critically dependent on the geometric structure of the embedded subspace. Moreover, we must recognize that directional and distance movements in shape space derived from vectorized landmark coordinates do not directly supply information regarding patterns of shape variation in physical space or their biological interpretation. Therefore, researchers cannot derive clear biological conclusions from high-dimensional shape data unless they explicitly account for the structural relationship between morphology itself and the Procrustes space onto which it is mapped.**
+
+
 
 ---
 
@@ -260,14 +268,14 @@ Two weighting schemes were applied to assess the relative importance of variance
 </div>
 **(A)**: Total variance of all PCs = 100%
 
-| PC   | PC_total     | Treatment      | Population     | Interaction    | Residual       |
-| ---- | ------------ | -------------- | -------------- | -------------- | -------------- |
-| PC1  | 64.59  (100) | 12.11  (18.75) | 23.36  (36.17) | 10.70  (16.57) | 18.41  (28.51) |
-| PC2  | 10.43  (100) | 2.80  (26.79)  | 1.26  (12.11)  | 1.62  (15.51)  | 4.76  (45.58)  |
-| PC3  | 7.92  (100)  | 1.41  (17.79)  | 0.43  (  5.44) | 0.90  (11.38)  | 5.19  (65.39)  |
-| PC4  | 6.52  (100)  | 0.60  (  9.16) | 0.26  (  4.04) | 0.96  (14.70)  | 4.70  (72.10)  |
-| PC5  | 2.50  (100)  | 0.13  (  5.16) | 0.33  (13.28)  | 0.22  (  8.06) | 1.83  (72.96)  |
-| PC6  | 2.10  (100)  | 0.06  (  2.98) | 0.10  (  4.69) | 0.10  (  4.69) | 1.84  (87.63)  |
+| PC  | PC_total     | Treatment      | Population     | Interaction    | Residual       |
+| --- | ------------ | -------------- | -------------- | -------------- | -------------- |
+| PC1 | 64.59  (100) | 12.11  (18.75) | 23.36  (36.17) | 10.70  (16.57) | 18.41  (28.51) |
+| PC2 | 10.43  (100) | 2.80  (26.79)  | 1.26  (12.11)  | 1.62  (15.51)  | 4.76  (45.58)  |
+| PC3 | 7.92  (100)  | 1.41  (17.79)  | 0.43  (  5.44) | 0.90  (11.38)  | 5.19  (65.39)  |
+| PC4 | 6.52  (100)  | 0.60  (  9.16) | 0.26  (  4.04) | 0.96  (14.70)  | 4.70  (72.10)  |
+| PC5 | 2.50  (100)  | 0.13  (  5.16) | 0.33  (13.28)  | 0.22  (  8.06) | 1.83  (72.96)  |
+| PC6 | 2.10  (100)  | 0.06  (  2.98) | 0.10  (  4.69) | 0.10  (  4.69) | 1.84  (87.63)  |
 
 **(B)**: Total non-residual variance = 100%
 
@@ -315,5 +323,7 @@ We primarily focused on PC1, which captured the largest proportion of systematic
 <div style="margin-left: 150px; margin-right: 150px; font-size: 14px;">  
 <b>Fig. A6.</b> Thin-plate spline deformation grids illustrating shape variation along principal components PC1-PC3 based on non-residual variance contributions. Each panel displays deformation patterns at positive (upper row) and negative (lower row) extremes of each component axis. Black dots represent the consensus (mean) landmark configuration, while red dots indicate deformed landmark positions. Blue vectors show the magnitude and direction of landmark displacement from the consensus shape. Grid distortions visualize the relative magnitude and spatial patterns of morphological variation along each principal component axis.
 </div>
+
+
 These deformation grids reveal a clear hierarchical organization of morphological effects. PC1 (80.5% variance) dominates, exhibiting large-scale deformations affecting overall head shape. PC2 (9.9%) and PC3 (4.8%) show progressively smaller and more localized deformations. This pattern demonstrates that head shape development in response to feeding treatment and population differences is fundamentally governed by a single primary axis of variation, with secondary axes contributing only minor, refined modifications to morphological structure.
 

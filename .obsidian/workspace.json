@@ -1,0 +1,184 @@
+{
+  "main": {
+    "id": "b286f235466cef65",
+    "type": "split",
+    "children": [
+      {
+        "id": "897e08e73c976395",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "844506d5006b8cd3",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "新規タブ"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "ea95fe8712749206",
+    "type": "split",
+    "children": [
+      {
+        "id": "a17822e596c79df0",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "b756fb194a8fa3cb",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "ファイルエクスプローラ"
+            }
+          },
+          {
+            "id": "2bfa2adae1c934a3",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "検索"
+            }
+          },
+          {
+            "id": "f212d6c68fd89f76",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "ブックマーク"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "68ccda27591bd373",
+    "type": "split",
+    "children": [
+      {
+        "id": "a75b1ca0ce9a54c9",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "a462290b57b858e3",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "バックリンク"
+            }
+          },
+          {
+            "id": "34cba9323d4213b1",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Appendix.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Appendixからのアウトゴーイングリンク"
+            }
+          },
+          {
+            "id": "4e983aa5b9b6b2fd",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "タグ"
+            }
+          },
+          {
+            "id": "45796d85a8d19272",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "すべてのプロパティ"
+            }
+          },
+          {
+            "id": "0298c5b53d312dae",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Appendix.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Appendixのアウトライン"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:クイックスイッチャーを開く": false,
+      "graph:グラフビューを開く": false,
+      "canvas:新規キャンバスを作成": false,
+      "daily-notes:今日のデイリーノートを開く": false,
+      "templates:テンプレートを挿入": false,
+      "command-palette:コマンドパレットを開く": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "844506d5006b8cd3",
+  "lastOpenFiles": [
+    "Appendix.md"
+  ]
+}
