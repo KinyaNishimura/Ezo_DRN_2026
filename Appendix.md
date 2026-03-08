@@ -1,24 +1,24 @@
-# Appendix: Analysis Methods of Geometric Morphometrics
+# Appendix: Exploring analytical method for landmark data that are appropriate for the research objectives
+
+We employed landmark-based geometric morphometrics for analysis of shape and size variation in our experimental setting. Landmark-based geometric morphometrics emerged between the late 1970s and the 1990s (Kendall 1977, 1984; Bookstein 1991; Rohlf 1999) and was methodologically consolidated in the early 2000s (Zelditch et al. 2004). The field continues to generate substantial debate (e.g., Collyer and Adams 2013; Adams 2014; Collyer et al. 2015; Denton and Adams 2015; Mitteroecker and Schaefer 2022). Persistent debates surround concepts and methodologies: whether landmark points adequately capture an object's 'shape' characteristics (Bookstein 1991; MacLeod 2013), whether the use of 2D projections of 3D objects is subject to conditions and limitations (Cardini 2014), and whether conceptual and technical issues regarding semilandmarks and landmarks have been adequately resolved (Bookstein 1991, 1997; Perez et al. 2006; Gunz and Mitteroecker 2013; MacLeod 2013, 2017; Drumheller et al. 2016). Various researchers have also raised statistical methodology concerns (Mitteroecker and Bookstein 2011; Collyer et al. 2015; Bookstein 2017, 2019; Cardini et al. 2019; Cardini and Polly 2020; Rohlf 2021).
+
+The landmark-based approach involves important epistemological issues. By treating 'shape' —an abstract epistemological concept— as a set of landmark points that bear no direct relation to the reality of 'shape' itself, it raises what Bhaskar (1975) calls the "epistemic fallacy" (confusing how we know things with how they exist). This is reminiscent of other episodes in the history of science: ancient and medieval scholars posited imaginary constructs such as 'epicycles' and 'equants' to explain planetary orbits, debating their configurations regardless of whether such constructs actually existed (Poskett 2022). Given this philosophical background regarding the nature of geometric morphometric research, it should be clear that analytical frameworks are not direct representations of reality, but rather tools for understanding and practical application. Therefore, it would be reckless hubris to claim that there is only one legitimate integrative method among the various disputed approaches. Recognizing these limitations, we adopt a set of concepts and analytical methods widely recognized in evolutionary biology that, despite ongoing technical debates, remain empirically sound and practically useful for addressing our research questions.
+
+However, there is no generally agreed-upon method for comparing context-dependent developmental shape changes across populations, such as diet-induced DRN variation among populations as examined in this study. This Appendix describes the process of exploring appropriate metrics for analyzing developmental shape changes and their variation across populations.
+
+The exploration consists of the following steps:
+**A1.** Analytical methods for testing overall hypotheses regarding 'Treatment' and 'Population' factors, employing generalized Procrustes coordinates that retain complete shape information from landmark-based geometric morphometrics.
+**A2.** Potential limitations of analysis arising from the high dimensionality of generalized Procrustes coordinate shape space.
+**A3–A5.** Exploration and determination of appropriate metrics for analyzing partial or specific hypotheses.
+**A6.** Visualization methods for shape variation using the determined metrics.
+
+
 
 ---
-
-This Appendix describes the process of exploring appropriate metrics for analyzing developmental shape changes and their variation across populations. The exploration consists of the following steps:
-
-**A1**.  Analytical methods for testing overall hypotheses regarding 'Treatment' and 'Population' factors, employing generalized Procrustes coordinates that involve complete shape information from landmark-based geometric morphometrics.
-
-**A2**.  Potential limitations of analysis due to the high dimensionality of the generalized Procrustes coordinate shape space.
-
-**A3-A5**. Exploration and determination of appropriate metrics.
-
-**A6**.  Visualization methods for shape variation using appropriate metrics.
-
-
 
 ## A1. Shape analysis using Procrustes ANOVA with RRPP
 
 In statistical analysis, shape data defined by generalized Procrustes coordinates of $K$ landmarks positioned in $M$-dimensional physical space are treated as $MK$-dimensional vectorized data. RRPP (Residual Randomization in Permutation Procedures) offers substantial advantages for analyzing high-dimensional geometric morphometric data (Adams and Collyer 2016; Collyer and Adams 2024; Collyer et al. 2015). We first analyzed vectorized generalized Procrustes coordinate shape data using RRPP with an overall hypothesis model incorporating 'Treatment type' as a fixed effect and 'Population (Location)' as a random effect. The results of this analysis are presented in Table 1 of the main text. The R code for the analysis is shown below.
-
-
 
 [Source data file: Symm.BE.GPA.AllInd.txt](https://github.com/KinyaNishimura/Ezo_DRN_2026/blob/main/Symm.BE.GPA.AllInd.txt)
 
@@ -53,7 +53,7 @@ anova_result <- anova(fit_proc)                                     # ANOVA tabl
 # The ANOVA table from anova(fit_proc) does not reflect the degrees of freedom lost due to GPA (a loss of df = 4) in the Residuals Df.
 # The following code corrects the ANOVA results to account for this.
 
-################################################################ Create the corrected ANOVA table
+################################################################ Create corrected ANOVA table
 # Start
 # Degrees of freedom lost due to GPA (4 for 2D data)
 gpa_df_loss <- 4
@@ -87,27 +87,14 @@ print(anova_df)
 
 # For comparison, also display the original ANOVA table
 cat("\nOriginal ANOVA table (not accounting for Df loss from GPA):\n")
-print(anova_result$table)                                         # <--- ANOVA Table for GPA data on a hypersphere
+print(anova_result$table)                               # <--- ANOVA Table for GPA data on a hypersphere
 ```
 
 Although some researchers have advocated for analytical methods such as pairwise and trajectory analysis implemented in RRPP using the GEOMORPH functions "pairwise" and "trajectory", which compare distances and angles among multiple objects in high-dimensional generalized Procrustes coordinate space following an overall hypothesis test (Collyer and Adams 2013; Collyer et al. 2015), we recognized that this approach was not suitable for our intended analysis of specific hypotheses and involved potential limitations. Consequently, we explored methods to extract information appropriate for such specific hypothesis analyses from the high-dimensional generalized Procrustes coordinate space.
 
 
 
-
-> **References:**
->
-> Adams, D.C. & Collyer, M.L. (2016). On the comparison of the strength of morphological integration across morphometric datasets. *Evolution*, 70, 2623-2631.
->
-> Collyer, M. L., and D. C. Adams. (2013). Phenotypic trajectory analysis: comparison of shape change patterns in evolution and ecology. *Hystrix-Italian Journal of Mammalogy* 24:75-83.
->
-> Collyer, M.L., Sekora, D.J. & Adams, D.C. (2015). A method for the analysis of phenotypic change for phenotypes described by high-dimensional data. *Heredity*, 115, 357-365.
->
-> Collyer, M. L., and D. C. Adams. (2024) RRPP: Linear Model Evaluation with Randomized Residuals in a Permutation Procedure. R package version 2.1.0. 
-
 ---
-
-
 
 ## A2. General difficulties in analyzing different trajectories in high dimensions
 
@@ -143,8 +130,6 @@ Even in a schematic quasi-shape space (Figure A2) of much lower dimension than t
 
 
 ---
-
-
 
 ## A3. Exploring biologically informative subspace
 
@@ -226,9 +211,9 @@ To assess overall performance, individual axis improvements were weighted by the
 
 **Conclusion:** Based on a comprehensive analysis of both orthogonality and separation performance, traditional PCA is more appropriate for this dataset than bgPCA. Although bgPCA theoretically targets between-group separation, its practical benefits are negligible for the current data. Moreover, bgPCA's reduced orthogonality compromises the interpretability of individual components, as their independence cannot be assumed. Therefore, we preferred PCA over bgPCA, as it provides mathematically rigorous, orthogonal component axes while achieving comparable group separation with greater simplicity and interpretability. 
 
+
+
 ---
-
-
 
 ## A4. Developmental shapes on the PC-subspace planes
 
@@ -246,12 +231,11 @@ As can be inferred from the schematic example in Figure A2, it is difficult to u
 </div>
 
 
-
 Figure A4 shows the magnitude and directional angles of developmental shape changes across multiple subspaces formed by the dominant principal components to identify characteristic patterns within each subspace. However, this analysis revealed that consistent, unified information could not be extracted across the multiple subspace representations. This demonstrates that the structure of shape variation is inherently multidimensional, and no single low-dimensional projection can capture the unified structure of shape variation.
 
+
+
 ---
-
-
 
 ## A5. Variance Component Analysis of Principal Components
 
@@ -305,9 +289,9 @@ Analysis of variance, excluding residual variance, reveals further characteristi
 
 This pattern suggests that while morphometric shape variation is multidimensional, the biologically meaningful responses to experimental treatment and population differences are concentrated along a primary axis of variation, with secondary axes contributing less to systematic effects. Based on these overall considerations, in order to understand and evaluate the differences in shape development caused by the two different types of food, only the PC1 score will be meaningfully employed, and information on the remaining PC axes will be excluded.
 
+
+
 ---
-
-
 
 ## A6. Thin-plate spline presentation
 
@@ -327,3 +311,62 @@ We primarily focused on PC1, which captured the largest proportion of systematic
 
 These deformation grids reveal a clear hierarchical organization of morphological effects. PC1 (80.5% variance) dominates, exhibiting large-scale deformations affecting overall head shape. PC2 (9.9%) and PC3 (4.8%) show progressively smaller and more localized deformations. This pattern demonstrates that head shape development in response to feeding treatment and population differences is fundamentally governed by a single primary axis of variation, with secondary axes contributing only minor, refined modifications to morphological structure.
 
+
+
+---
+
+## References
+
+Adams, D. C. (2014) Quantifying and comparing phylogenetic evolutionary rates for shape and other high-dimensional phenotypic data. *Systematic Biology* 63: 166-177.
+
+Adams, D.C. & Collyer, M.L. (2016). On the comparison of the strength of morphological integration across morphometric datasets. *Evolution*, 70: 2623-2631.
+
+Bhaskar, R. (1975) A Realist Theory of Science. Leeds Books.
+
+Bookstein, F. L. (1991) Morphometric Tools for Landmark Data. Cambridge University Press.
+
+Bookstein, F. L. (1997). Landmark methods for forms without landmarks: Morphometrics of group differences in outline shape. *Medical Image Analysis* 1: 225–243.
+
+Bookstein, F. L. (2017) A Newly Noticed Formula Enforces Fundamental Limits on Geometric Morphometric Analyses. *Evolutionary Biology* 44: 522-541.
+
+Bookstein, F. L. (2019) Pathologies of Between-Groups Principal Components Analysis in Geometric Morphometrics. *Evolutionary Biology* 46: 271-302.
+
+Cardini, A. (2014) Missing the third dimension in geometric morphometrics: how to assess if 2D images really are a good proxy for 3D structures? *Hystrix-Italian Journal of Mammalogy* 25: 73-81.
+
+Cardini, A., P. O'Higgins, and F. J. Rohlf. (2019) Seeing Distinct Groups Where There are None: Spurious Patterns from Between-Group PCA. *Evolutionary Biology* 46: 303-316.
+
+Cardini, A., and P. D. Polly. (2020) Cross-validated Between Group PCA Scatterplots: A Solution to Spurious Group Separation? *Evolutionary Biology* 47: 85-95.
+
+Collyer, M. L., and D. C. Adams. (2013) Phenotypic trajectory analysis: comparison of shape change patterns in evolution and ecology. *Hystrix-Italian Journal of Mammalogy* 24: 75-83.
+
+Collyer, M. L., and D. C. Adams. (2024) RRPP: Linear Model Evaluation with Randomized Residuals in a Permutation Procedure. R package version 2.1.0. 
+
+Collyer, M. L., D. J. Sekora, and D. C. Adams. (2015) A method for analysis of phenotypic change for phenotypes described by high-dimensional data. Heredity (Edinb) 115: 357-365.
+
+Denton, J. S., and D. C. Adams. (2015) A new phylogenetic test for comparing multiple high-dimensional evolutionary rates suggests interplay of evolutionary rates and modularity in lanternfishes (Myctophiformes; Myctophidae). *Evolution* 69: 2425-2440.
+
+Drumheller, S. K., Wilberg, E. W. & Sadleir, R. W. (2016) The utility of captive animals in actualistic research: A geometric morphometric exploration of the tooth row of Alligator mississippiensis suggesting ecophenotypic influences and functional constraints. *Journal of Morphology* 277: 866-878.
+
+Gunz, P. & Mitteroecker, P. (2013) Semilandmarks: a method for quantifying curves and surfaces. *Hystrix, Italian Journal of Mammalogy* 24: 103–109.
+
+Kendall, D. G. (1977) The Diffusion of Shape. Advances in applied probability, 9: 428–430.
+
+Kendall, D. G. (1984) Shape Manifolds, Procrustean Metrics, and Complex Projective Spaces. *Bulletin of the London Mathematical Society* 16: 81-121.
+
+MacLeod, N. (2013) Landmarks and Semilandmarks: Differences without Meaning and Meaning without Difference. *Paleontological Association Newsletter* 82: 32-43.
+
+MacLeod, N. (2017) Morphometrics: History, development methods and prospects. *Zoological Systematics* 42: 4-33.
+
+Mitteroecker, P., & Bookstein, F. L. (2011) Linear discrimination, ordination, and the visualization of selection gradients in modern morphometrics. *Evolutionary Biology* 38: 100–114.
+
+Mitteroecker, P., and K. Schaefer. (2022) Thirty years of geometric morphometrics: Achievements, challenges, and the ongoing quest for biological meaningfulness. *American Journal of Biological Anthropology* 178 Suppl 74: 181-210.
+
+Perez, S. I., Bernakm V, & Gonzalez, P. N. (2006) Differences between sliding semi-landmark methods in geometric morphometrics, with an application to human craniofacial and dental variation. *Journal of Anatomy* 208: 769-784.
+
+Poskett, J. (2022) Horizons: The Global Origins of Modern Science. Viking.
+
+Rohlf, F. J. (1999) Shape statistics: Procrustes superimpositions and tangent spaces. *Journal of Classification* 16: 197-223.
+
+Rohlf, F. J. (2021) Why Clusters and Other Patterns Can Seem to be Found in Analyses of High-Dimensional Data. *Evolutionary Biology* 48: 1-16.
+
+Zelditch, M. L., Swiderski, D. L., Sheets, D. H., & Fink, W. L. (2004). Geometric Morphometrics for Biologists: A primer (First Edition.). Elsevier Academic Press.
