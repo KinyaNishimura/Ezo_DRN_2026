@@ -1,3 +1,6 @@
+https://kinyanishimura.github.io/Ezo_DRN_2026/Appendix.html
+
+
 # Appendix: Exploring analytical method for landmark data that are appropriate for the research objectives
 
 We employed landmark-based geometric morphometrics for analysis of shape and size variation in our experimental setting. Landmark-based geometric morphometrics emerged between the late 1970s and the 1990s (Kendall 1977, 1984; Bookstein 1991; Rohlf 1999) and was methodologically consolidated in the early 2000s (Zelditch et al. 2004). The field continues to generate substantial debate (e.g., Collyer and Adams 2013; Adams 2014; Collyer et al. 2015; Denton and Adams 2015; Mitteroecker and Schaefer 2022). Persistent debates surround concepts and methodologies: whether landmark points adequately capture an object's 'shape' characteristics (Bookstein 1991; MacLeod 2013), whether the use of 2D projections of 3D objects is subject to conditions and limitations (Cardini 2014), and whether conceptual and technical issues regarding semilandmarks and landmarks have been adequately resolved (Bookstein 1991, 1997; Perez et al. 2006; Gunz and Mitteroecker 2013; MacLeod 2013, 2017; Drumheller et al. 2016). Various researchers have also raised statistical methodology concerns (Mitteroecker and Bookstein 2011; Collyer et al. 2015; Bookstein 2017, 2019; Cardini et al. 2019; Cardini and Polly 2020; Rohlf 2021).
@@ -32,7 +35,47 @@ shape_vars <- grep("Symm", names(data), value = TRUE)
 shape_data <- as.matrix(data[, shape_vars])
 ```
 
+### Revised code (2026-08-26)
+
+```r
+# Required libraries
+library(geomorph)
+library(RRPP)
+library(ggplot2)
+
+# Fit the full model. 'Treatments' is a fixed effect and 'Location' (Population)
+# a random effect. Note that procD.lm has no argument for declaring a factor
+# random: the fixed/random distinction is made when the ANOVA table is
+# constructed, by specifying the error term for each effect in anova().
+fit_proc <- procD.lm(shape_data ~ Treatments + Location + Treatments:Location,
+                     data = data,
+                     iter = 999,
+                     RRPP = TRUE,
+                     print.progress = TRUE,
+                     effect.type = "F",
+                     SS.type = "I")
+
+# ANOVA table for the mixed model. The three entries of 'error' correspond to
+# the three terms of the model in order. With 'Location' random, the effect of
+# 'Treatments' is tested against the Treatments:Location interaction rather than
+# against the residual mean square, so that a diet effect is detected only if it
+# is consistent across populations. The remaining two terms are tested against
+# the residual mean square.
+anova_result <- anova(fit_proc,
+                      error = c("Treatments:Location", "Residuals", "Residuals"))     
 ```
+
+### Superseded code (original submission, 2026-03-08)
+
+Two changes were made to this section after submission.
+
+First, `random.effect = "Location"` was passed to `procD.lm()`. That argument does not exist in `procD.lm()`; it was silently ignored, so every term was tested against the residual mean square and the intended mixed-model specification was not in force. The mixed-model tests are now obtained by specifying the error terms in `anova()`.
+
+Second, the block reproduced below adjusted the residual and total degrees of freedom for the four degrees of freedom removed by the two-dimensional Procrustes superimposition, and recomputed the mean squares and F ratios from the adjusted values. This block has been removed. The adjustment is unnecessary here: the dimensionality of the shape space enters the numerator and denominator of every F ratio identically and cancels, and significance is assessed by permutation of residuals rather than against a parametric F distribution, so neither the F ratio nor the P value depends on it. The degrees of freedom now reported in Table 1 of the main text are those of the experimental design, without this adjustment.
+
+The superseded code was:
+
+```R
 # Required libraries
 library(geomorph)
 library(RRPP)
